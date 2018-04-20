@@ -47,22 +47,28 @@
             @Html.DisplayFor(modelItem => item.tenSach)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.namXuatBan)
+            @*đổi định dạng năm xuất bản sang năm*@
+            @{ 
+                if (item.namXuatBan.HasValue)
+                {
+                    <text>@item.namXuatBan.Value.Year</text>
+                }
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.soLuong)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.maLoaiSach)
+            @*@Html.DisplayFor(modelItem => item.maLoaiSach)*@
 
-
-            @*@{ 
+            @*hiển thị tên loại sách thay cho mã loại sách*@
+            @{ 
                 var loaisach = db.LoaiSaches.FirstOrDefault(x => x.maLoaiSach == item.maLoaiSach);
                 if (loaisach != null)
                 {
                     <text>@loaisach.tenLoaiSach</text>
                 }
-            }*@
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.maTacGia)
